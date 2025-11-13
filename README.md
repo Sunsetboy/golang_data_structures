@@ -1,6 +1,8 @@
-## Data structures implemented in Golang
+# Data structures implemented in Golang
 
--   Linked list of integers
--   Queue of integers
--   Stack of integers
--   Binary tree of integers
+All data structures use generic types:
+
+- Linked list
+- Queue
+- Stack
+- Binary tree

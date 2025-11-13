@@ -5,7 +5,7 @@ import (
 )
 
 func Test_QueueIntAdd(t *testing.T) {
-	queue, err := NewQueueInt()
+	queue, err := NewQueue[int]()
 	if err != nil {
 		t.Errorf("Unexpected error on queue creation: %s", err.Error())
 	}
@@ -23,7 +23,7 @@ func Test_QueueIntAdd(t *testing.T) {
 }
 
 func Test_QueueIntAddPop(t *testing.T) {
-	queue, err := NewQueueInt()
+	queue, err := NewQueue[int]()
 	if err != nil {
 		t.Errorf("Unexpected error on queue creation: %s", err.Error())
 	}

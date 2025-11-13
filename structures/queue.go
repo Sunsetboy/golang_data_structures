@@ -2,25 +2,25 @@ package structures
 
 import (
 	"errors"
-	"strconv"
+	"fmt"
 	"strings"
 )
 
-type QueueInt struct {
-	data []int
+type Queue[T any] struct {
+	data []T
 }
 
-func NewQueueInt() (QueueInt, error) {
-	return QueueInt{data: []int{}}, nil
+func NewQueue[T any]() (Queue[T], error) {
+	return Queue[T]{data: []T{}}, nil
 }
 
-func (q *QueueInt) Add(el int) error {
-	tmpQueue := []int{el}
+func (q *Queue[T]) Add(el T) error {
+	tmpQueue := []T{el}
 	q.data = append(tmpQueue, q.data...)
 	return nil
 }
 
-func (q *QueueInt) Pop() (*int, error) {
+func (q *Queue[T]) Pop() (*T, error) {
 	if len(q.data) == 0 {
 		return nil, errors.New("empty queue")
 	}
@@ -30,14 +30,14 @@ func (q *QueueInt) Pop() (*int, error) {
 	return &lastElement, nil
 }
 
-func (q *QueueInt) List() []int {
+func (q *Queue[T]) List() []T {
 	return q.data
 }
 
-func (q *QueueInt) Join() string {
+func (q *Queue[T]) Join() string {
 	elementsAsStrings := []string{}
 	for _, i := range q.data {
-		elementsAsStrings = append(elementsAsStrings, strconv.Itoa(i))
+		elementsAsStrings = append(elementsAsStrings, fmt.Sprintf("%v", i))
 	}
 	return strings.Join(elementsAsStrings, ",")
 }

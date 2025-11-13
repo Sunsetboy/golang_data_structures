@@ -1,25 +1,25 @@
 package structures
 
 import (
-	"strconv"
+	"fmt"
 	"strings"
 )
 
-type listNode struct {
-	val  int
-	next *listNode
+type listNode[T any] struct {
+	val  T
+	next *listNode[T]
 }
 
-type ListInt struct {
-	root *listNode
+type List[T any] struct {
+	root *listNode[T]
 }
 
-func NewListInt(val int) ListInt {
-	return ListInt{&listNode{val: val}}
+func NewList[T any](val T) List[T] {
+	return List[T]{&listNode[T]{val: val}}
 }
 
-func (l *ListInt) List() []int {
-	data := []int{}
+func (l *List[T]) List() []T {
+	data := []T{}
 	currentNode := l.root
 	if currentNode == nil {
 		return data
@@ -33,21 +33,21 @@ func (l *ListInt) List() []int {
 	}
 }
 
-func (l *ListInt) Add(el int) {
+func (l *List[T]) Add(el T) {
 	currentNode := l.root
 	for {
 		if currentNode.next == nil {
-			currentNode.next = &listNode{val: el}
+			currentNode.next = &listNode[T]{val: el}
 			return
 		}
 		currentNode = currentNode.next
 	}
 }
 
-func (l *ListInt) Join() string {
+func (l *List[T]) Join() string {
 	elementsAsStrings := []string{}
 	for _, i := range l.List() {
-		elementsAsStrings = append(elementsAsStrings, strconv.Itoa(i))
+		elementsAsStrings = append(elementsAsStrings, fmt.Sprintf("%v", i))
 	}
 	return strings.Join(elementsAsStrings, ",")
 }

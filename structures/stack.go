@@ -2,24 +2,24 @@ package structures
 
 import (
 	"errors"
-	"strconv"
+	"fmt"
 	"strings"
 )
 
-type StackInt struct {
-	data []int
+type Stack[T any] struct {
+	data []T
 }
 
-func NewStackInt() (StackInt, error) {
-	return StackInt{data: []int{}}, nil
+func NewStack[T any]() (Stack[T], error) {
+	return Stack[T]{data: []T{}}, nil
 }
 
-func (q *StackInt) Add(el int) error {
+func (q *Stack[T]) Add(el T) error {
 	q.data = append(q.data, el)
 	return nil
 }
 
-func (q *StackInt) Pop() (*int, error) {
+func (q *Stack[T]) Pop() (*T, error) {
 	if len(q.data) == 0 {
 		return nil, errors.New("empty stack")
 	}
@@ -29,14 +29,14 @@ func (q *StackInt) Pop() (*int, error) {
 	return &lastElement, nil
 }
 
-func (q *StackInt) List() []int {
+func (q *Stack[T]) List() []T {
 	return q.data
 }
 
-func (q *StackInt) Join() string {
+func (q *Stack[T]) Join() string {
 	elementsAsStrings := []string{}
 	for _, i := range q.data {
-		elementsAsStrings = append(elementsAsStrings, strconv.Itoa(i))
+		elementsAsStrings = append(elementsAsStrings, fmt.Sprintf("%v", i))
 	}
 	return strings.Join(elementsAsStrings, ",")
 }

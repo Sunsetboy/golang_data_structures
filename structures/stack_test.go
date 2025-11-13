@@ -5,7 +5,7 @@ import (
 )
 
 func Test_StackIntAdd(t *testing.T) {
-	stack, err := NewStackInt()
+	stack, err := NewStack[int]()
 	if err != nil {
 		t.Errorf("Unexpected error on stack creation: %s", err.Error())
 	}
@@ -23,7 +23,7 @@ func Test_StackIntAdd(t *testing.T) {
 }
 
 func Test_StackIntAddPop(t *testing.T) {
-	stack, err := NewStackInt()
+	stack, err := NewStack[int]()
 	if err != nil {
 		t.Errorf("Unexpected error on queue creation: %s", err.Error())
 	}
