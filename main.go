@@ -12,6 +12,15 @@ func main() {
 	list.Add(4)
 	list.Add(5)
 
-	fmt.Printf("List: %v", list.List())
-	fmt.Printf("List joined: %s", list.Join())
+	fmt.Printf("List: %v \n", list.List())
+	fmt.Printf("List joined: %s\n", list.Join())
+
+	// create a binary tree from a slice
+
+	binaryTreeElements := []int{1, 2, 3, 4, 5, 6}
+	btree, err := structures.CreateBtreeFromSlice(binaryTreeElements)
+	if err != nil {
+		fmt.Printf("Error creating a binary tree: %s", err.Error())
+	}
+	fmt.Printf("Binary tree: %v", *btree)
 }
